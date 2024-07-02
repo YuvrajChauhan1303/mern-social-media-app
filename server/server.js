@@ -9,7 +9,11 @@ dotenv.config();
 const app = express()
 const PORT = process.env.PORT || 5000
 
-app.use("api/auth/", authRoutes)
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
+app.use("/api/auth", authRoutes)
+
 
 app.listen(PORT , () => {
     console.log(`Server running on Port ${PORT}`)
